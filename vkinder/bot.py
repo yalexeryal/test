@@ -19,8 +19,7 @@ class Bot:
     def __init__(self, config: Config, storage: BaseStorage) -> None:
         self.storage = storage
 
-        #tokens = config.vk_user_tokens.split(",")
-        tokens = load_dotenv()
+        tokens = config.vk_user_tokens.split(",")
         logger.debug("Found %s access tokens!", len(tokens))
         self._sessions = [vk_api.VkApi(token=token) for token in tokens]
         self.sessions = cycle(self._sessions)
